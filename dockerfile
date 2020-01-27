@@ -1,12 +1,16 @@
 FROM node:alpine
 
-WORKDIR D:/Dev/Docker/app
+COPY package*.json /app
 
-COPY package*.json ./
+WORKDIR /app
+
 RUN npm install
 
-COPY . .
+COPY . /app
+
+ENTRYPOINT ["npm", "start"]
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+#docker build --name teste:lastest .
+#docker run -p 3000:3000 --name container_teste teste:lastest
